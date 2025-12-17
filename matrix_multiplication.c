@@ -11,6 +11,7 @@ int main()
     printf("3. INVERSE\n");
     printf("4. CHARACTERSTIC EQUATION\n");
     printf("5. EIGEN VALUE\n");
+    printf("6. EIGEN VECTOR\n");
     printf("ENTER YOUR CHOICE:");
     scanf("%d", &choice);
     int detA;
@@ -319,6 +320,44 @@ int main()
             float eigen_value1 = (traceA + sqrt(discriminant))/2;
             float eigen_value2 = (traceA - sqrt(discriminant))/2;
             printf("EIGEN VALUE OF MATRIX A IS : %f and %f", eigen_value1, eigen_value2);
+        }
+    }
+    else if (choice == 6)
+    {
+        unsigned int r1, c1;
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");      
+        scanf("%u", &r1);
+        printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
+        scanf("%u", &c1);
+        int arr1[r1][c1];
+        if (r1 != c1)
+        {
+            printf("EIGEN VECTOR ARE ONLY DEFINED FOR A SQUARE MATRIX\n");
+        }
+        else if(r1 != 2)
+        {
+            printf("ONLY 2x2 MARRIX ARE SUPPORTED\n");
+        }
+        else if (r1 == 2)
+        {
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%d", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
+            int traceA = arr1[0][0] + arr1[1][1];
+            int discriminant = traceA * traceA - 4 * detA;
+            float eigen_value1 = (traceA + sqrt(discriminant))/2;
+            float eigen_value2 = (traceA - sqrt(discriminant))/2;
+            printf("EIGEN VECTOR FOR 2x2 MATRIX ARE:\n");
+            printf("X₁ = %.2d\n", arr1[0][1]);
+            printf("     %.2f\n", eigen_value1 - arr1[0][0]);
+            printf("X₂ = %.2d\n", arr1[0][1]);
+            printf("     %.2f", eigen_value2 - arr1[0][0]);
         }
     }
     return 0;
