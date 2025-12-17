@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 int main()
 {   
     printf("WELCOME TO MATOPS\n");
@@ -9,6 +10,7 @@ int main()
     printf("2. DETERMINANT (upto 3 * 3 matrix)\n");
     printf("3. INVERSE\n");
     printf("4. CHARACTERSTIC EQUATION\n");
+    printf("5. EIGEN VALUE\n");
     printf("ENTER YOUR CHOICE:");
     scanf("%d", &choice);
     int detA;
@@ -283,6 +285,40 @@ int main()
             printf("CHARATERSTIC EQUATION OF MATRIX A IS:\n");
             printf("λ³ - %dλ² + %dλ - %d", traceA, sum_principle_minors, detA);
 
+        }
+    }
+    else if (choice == 5)
+    {
+        unsigned int r1, c1;
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");      
+        scanf("%u", &r1);
+        printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
+        scanf("%u", &c1);
+        int arr1[r1][c1];
+        if (r1 != c1)
+        {
+            printf("EIGEN VALUES ARE ONLY DEFINED FOR A SQUARE MATRIX\n");
+        }
+        else if(r1 != 2)
+        {
+            printf("ONLY 2x2 MARRIX ARE SUPPORTED\n");
+        }
+        else if (r1 == 2)
+        {
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%d", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
+            int traceA = arr1[0][0] + arr1[1][1];
+            int discriminant = traceA * traceA - 4 * detA;
+            float eigen_value1 = (traceA + sqrt(discriminant))/2;
+            float eigen_value2 = (traceA - sqrt(discriminant))/2;
+            printf("EIGEN VALUE OF MATRIX A IS : %f and %f", eigen_value1, eigen_value2);
         }
     }
     return 0;
