@@ -8,6 +8,7 @@ int main()
     printf("1. MATRIX MULTIPLICATION\n");
     printf("2. DETERMINANT (upto 3 * 3 matrix)\n");
     printf("3. INVERSE\n");
+    printf("4. CHARACTERSTIC EQUATION\n");
     printf("ENTER YOUR CHOICE:");
     scanf("%d", &choice);
     int detA;
@@ -230,6 +231,59 @@ int main()
                 }
             }
         }
-    }  
+    }
+    else if (choice == 4)
+    {
+        unsigned int r1, c1;
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");      
+        scanf("%u", &r1);
+        printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
+        scanf("%u", &c1);
+        int arr1[r1][c1];
+        if (r1 != c1)
+        {
+            printf("characteric equation is only defined for square matrix.");
+        }
+        else if(r1 != 2 && r1 != 3)
+        {
+            printf("only 2x2 and 3x3 matrix is supported");
+        }
+        else if(r1 == 2)
+        {
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%d", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
+            int traceA = arr1[0][0] + arr1[1][1];
+            printf("CHARATERSTIC EQUATION OF MATRIX A IS:\n");
+            printf("λ² - %dλ + %d", traceA, detA);
+        }
+        else if (r1 == 3)
+        {   
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%d", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0]*(arr1[1][1]*arr1[2][2] - arr1[1][2]*arr1[2][1])
+                   - arr1[0][1]*(arr1[1][0]*arr1[2][2] - arr1[1][2]*arr1[2][0])
+                   + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
+            int traceA = arr1[0][0] + arr1[1][1] + arr1[2][2];
+            int sum_principle_minors = arr1[1][1] * arr1[2][2] - arr1[1][2] * arr1[2][1]
+                                       + arr1[0][0] * arr1[2][2] - arr1[0][2] * arr1[2][0]
+                                       + arr1[0][0] * arr1[1][1] - arr1[0][1] * arr1[1][0];
+            printf("CHARATERSTIC EQUATION OF MATRIX A IS:\n");
+            printf("λ³ - %dλ² + %dλ - %d", traceA, sum_principle_minors, detA);
+
+        }
+    }
     return 0;
 }
