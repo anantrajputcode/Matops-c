@@ -6,9 +6,11 @@ int main()
     int choice;
     printf("CHOOSE OPERATIONS:\n");
     printf("1. MATRIX MULTIPLICATION\n");
-    printf("2. DETERMINANT\n");
+    printf("2. DETERMINANT (upto 3 * 3 matrix)\n");
+    printf("3. INVERSE\n");
     printf("ENTER YOUR CHOICE:");
     scanf("%d", &choice);
+    int detA;
     if (choice == 1)
     {
         unsigned int r1, c1, r2, c2;
@@ -72,8 +74,8 @@ int main()
     else if (choice == 2)
     {
         unsigned int r1, c1;
-        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");       //Taking input for the dimensions of matrix A and B and using unsigned int to make sure dimension of matrix are not negative.
-        scanf("%u", &r1);
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");
+        scanf("%u", &r1);     
         printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
         scanf("%u", &c1);
         int arr1[r1][c1];
@@ -91,7 +93,6 @@ int main()
                     scanf("%d", &arr1[i][j]);
                 }
             }
-            int detA;
             if (r1 == 1)
             {
                 detA = arr1[0][0];
@@ -112,6 +113,123 @@ int main()
             }
         }
 
-    }    
+    }
+    else if (choice == 3)
+    {
+        unsigned int r1, c1;
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");      
+        scanf("%u", &r1);
+        printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
+        scanf("%u", &c1);
+        float arr1[r1][c1];
+        float inv[r1][c1];
+        if (r1 != c1)
+        {
+            printf("INVERSE DOES NOT EXIST\n");
+        }
+        else if (r1 != 2 && r1 != 3 && r1 != 1)
+        {
+            printf("ONLY 1X1, 2X2 AND 3X3 MATRIX SUPPORTED\n");
+        }
+        else if (r1 == 1)
+        {   
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%f", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0];
+            inv[0][0] = 1/detA; 
+            if (detA == 0)
+            {
+                printf("INVERSE DOES NOT EXIST");
+            }
+            else if (detA != 0)
+            {
+                printf("INVERSE OF MATRIX A IS : \n");
+                for (int i = 0; i < r1; i++)
+                {
+                    for (int j = 0; j < c1; j++)
+                    {
+                        printf("%.2f\n", inv[i][j]);
+                    }
+                }
+            }          
+        }
+        else if (r1 == 2)
+        {   printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%f", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
+            if (detA == 0)
+            {
+                printf("INVERSE DOES NOT EXIST");
+            }
+            else if (detA != 0)
+            {
+                inv[0][0] = arr1[1][1]/detA;
+                inv[0][1] = -arr1[0][1]/detA;
+                inv[1][0] = -arr1[1][0]/detA;
+                inv[1][1] = arr1[0][0]/detA;
+                printf("INVERSE OF MATRIX A IS : \n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    printf("%.2f\t", inv[i][j]);
+                }
+                printf("\n");
+            }
+            }
+        }
+        else if (r1 == 3)
+        {
+            printf("ENTER ELEMENTS OF MATRIX A:\n");
+            for (int i = 0; i < r1; i++)
+            {
+                for (int j = 0; j < c1; j++)
+                {
+                    scanf("%f", &arr1[i][j]);
+                }
+            }
+            detA = arr1[0][0]*(arr1[1][1]*arr1[2][2] - arr1[1][2]*arr1[2][1])
+                   - arr1[0][1]*(arr1[1][0]*arr1[2][2] - arr1[1][2]*arr1[2][0])
+                   + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
+            if (detA == 0)
+            {
+                printf("INVERSE DOES NOT EXIST");
+            }
+            else if (detA != 0)
+            {
+                inv[0][0]=(arr1[1][1]*arr1[2][2]-arr1[1][2]*arr1[2][1])/detA;
+                inv[0][1]=-(arr1[0][1]*arr1[2][2]-arr1[0][2]*arr1[2][1])/detA;
+                inv[0][2]=(arr1[0][1]*arr1[1][2]-arr1[0][2]*arr1[1][1])/detA;
+
+                inv[1][0]=-(arr1[1][0]*arr1[2][2]-arr1[1][2]*arr1[2][0])/detA;
+                inv[1][1]=(arr1[0][0]*arr1[2][2]-arr1[0][2]*arr1[2][0])/detA;
+                inv[1][2]=-(arr1[0][0]*arr1[1][2]-arr1[0][2]*arr1[1][0])/detA;
+
+                inv[2][0]=(arr1[1][0]*arr1[2][1]-arr1[1][1]*arr1[2][0])/detA;
+                inv[2][1]=-(arr1[0][0]*arr1[2][1]-arr1[0][1]*arr1[2][0])/detA;
+                inv[2][2]=(arr1[0][0]*arr1[1][1]-arr1[0][1]*arr1[1][0])/detA;
+                for (int i = 0; i < r1; i++)
+                {
+                for (int j = 0; j < c1; j++)
+                {
+                    printf("%.2f\t", inv[i][j]);
+                }
+                printf("\n");
+                }
+            }
+        }
+    }  
     return 0;
 }
