@@ -353,35 +353,11 @@ int main()
             int discriminant = traceA * traceA - 4 * detA;
             float eigen_value1 = (traceA + sqrt(discriminant))/2;
             float eigen_value2 = (traceA - sqrt(discriminant))/2;
-            float x1_1, x2_1;
-            if (arr1[0][1] != 0)
-            {
-                x1_1 = 1;
-                x2_1 = (eigen_value1 - arr1[0][0])/arr1[0][1];
-            }
-            else
-            {
-                x1_1 = (eigen_value1 - arr1[1][1])/arr1[1][0];
-                x2_1 = 1;
-            }
-            float norm1 = sqrt(x1_1*x1_1 + x2_1*x2_1);
-            float x1_2, x2_2;
-            if (arr1[0][1] != 0)
-            {
-                x1_2 = 1;
-                x2_2 = (eigen_value2 - arr1[0][0])/arr1[0][1];
-            }
-            else 
-            {
-                x1_2 = (eigen_value2 - arr1[1][1])/arr1[1][0];
-                x2_2 = 1;
-            }
-            float norm2 = sqrt(x1_2*x1_2 + x2_2*x2_2);
             printf("EIGEN VECTOR FOR 2x2 MATRIX ARE:\n");
-            printf("X₁ = %.2f\n", x1_1/norm1);
-            printf("     %.2f\n", x2_1/norm1);
-            printf("X₂ = %.2f\n", x1_2/norm2);
-            printf("     %.2f", x2_2/norm2);
+            printf("X₁ = %.2d\n", arr1[0][1]);
+            printf("     %.2f\n", eigen_value1 - arr1[0][0]);
+            printf("X₂ = %.2d\n", arr1[0][1]);
+            printf("     %.2f", eigen_value2 - arr1[0][0]);
         }
     }
     return 0;
