@@ -12,6 +12,7 @@ int main()
     printf("4. CHARACTERSTIC EQUATION\n");
     printf("5. EIGEN VALUE\n");
     printf("6. EIGEN VECTOR\n");
+    printf("7. TRANSPOSE OF A MATERIX\n");
     printf("ENTER YOUR CHOICE:");
     scanf("%d", &choice);
     int detA;
@@ -359,6 +360,33 @@ int main()
             printf("X₂ = %.2d\n", arr1[0][1]);
             printf("     %.2f", eigen_value2 - arr1[0][0]);
         }
+    }
+    else if (choice == 7)
+    {
+        unsigned int r1, c1;
+        printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");      
+        scanf("%u", &r1);
+        printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
+        scanf("%u", &c1);
+        int arr1[r1][c1];
+        printf("ENTER ELEMENTS OF MATRIX A:\n");
+        for (int i = 0; i < r1; i++)
+        {
+            for (int j = 0; j < c1; j++)
+            {
+                scanf("%d", &arr1[i][j]);
+            }
+        }
+        printf("THE TRANSPOSE OF THE MATRIX A IS:\n");
+        for (int i = 0; i < c1; i++)
+        {
+            for (int j = 0; j < r1; j++)
+            {
+                printf("%d\t", arr1[j][i]);
+            }
+            printf("\n");
+        }
+
     }
     return 0;
 }
