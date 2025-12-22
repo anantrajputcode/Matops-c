@@ -31,7 +31,7 @@ int main()
         printf("4. CHARACTERSTIC EQUATION\n");
         printf("5. EIGEN VALUE\n");
         printf("6. EIGEN VECTOR\n");
-        printf("7. TRANSPOSE OF A MATERIX\n");
+        printf("7. TRANSPOSE OF A MATRIX\n");
         printf("8. SYSTEM SETTINGS\n");
         printf("0. EXIT\n");
         printf("ENTER YOUR CHOICE:");
@@ -40,7 +40,7 @@ int main()
         if (choice == 1)
         {
             unsigned int r1, c1, r2, c2;
-            printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");       //Taking input for the dimensions of matrix A and B and using unsigned int to make sure dimension of matrix are not negative.
+            printf("ENTER THE NUMBER OF ROWS OF MATRIX A:-\n");       
             scanf("%u", &r1);
             printf("\nENTER THE NUMBER OF COLUMN OF MATRIX A:-\n");
             scanf("%u", &c1);
@@ -48,7 +48,7 @@ int main()
             scanf("%u", &r2);
             printf("\nENTER THE NUMBER OF COLUMN IN MATRIX B:-\n");
             scanf("%u", &c2);
-            if (r1 == 0 || c1 == 0 || r2 == 0 || c2 == 0)            //Checking rows and column are not equal to zero.
+            if (r1 == 0 || c1 == 0 || r2 == 0 || c2 == 0)           
             {
                 printf("\nROWS AND COLUMNS MUST BE GREATER THAN ZERO.\n");
             }
@@ -60,8 +60,6 @@ int main()
             {
                 int arr1[r1][c1],arr2[r2][c2],arr3[r1][c2], i, j, k;
                 printf("\nENTER THE ELEMENTS OF MATRIX A:-\n");
-
-                //Input Matrix A
                 for (i = 0; i < r1; i++)
                 {
                     for (j = 0; j < c1; j++)
@@ -70,8 +68,6 @@ int main()
                     }
                 }
                 printf("\nENTER THE ELEMENTS OF MATRIX B:-\n");
-
-                //Input Matrix B
                 for (i = 0; i < r2; i++)
                 {
                     for (j = 0; j < c2; j++)
@@ -83,7 +79,7 @@ int main()
                 for (i = 0; i < r1; i++)
                 {   
 
-                    for (j = 0; j < c2; j++)                     //resultant matrix
+                    for (j = 0; j < c2; j++)                   
                     {
                         arr3[i][j] = 0;
                         for (k = 0; k < c1; k++)
@@ -427,12 +423,13 @@ int main()
                 printf("\t\t\t3. MAINTAINER\n");
                 printf("\t\t\t4. RECENT UPDATE DATE\n");
                 printf("\t\t\t5. RETURN TO PREVIOUS MENU\n");
+                printf("\t\t\t6. LOG OUT\n");
                 printf("\t\t\tENTER THE CHOICE FOR SETTINGS: ");
                 scanf("%d", &sys_choice);
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.2.1\n");
+                    printf("\t\t\t\t\t\tVersion Number: 2.3.0\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -462,8 +459,24 @@ int main()
                     flag = 1;
                     break;
                 }
+                else if (sys_choice == 6)
+                {
+                    printf("\t\t\t\t\t\t-------------------------------------\n");
+                    printf("\t\t\t\t\t\tLogged Out of the System Successfully.\n");
+                    printf("\t\t\t\t\t\t--------------------------------------\n");
+                    sys_choice = 0;
+                    flag = 0;
+                    break;
+                }
             }
 
+        }
+        else if (choice == 0)
+        {
+            printf("\t\t\t\t\t\t-------------------------------\n");
+            printf("\t\t\t\t\t\tEXITED THE SYSTEM SUCCESSFULLY.\n");
+            printf("\t\t\t\t\t\t-------------------------------\n");
+            break;
         }
         else
         {
