@@ -6,13 +6,17 @@ int main()
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
+    int flag = 0;
     while (try != 5)
     {
-    
+    if (flag == 0)
+    {
     printf("WELCOME TO MATOPS\n");
     printf("__________________\n");
     printf("ENTER PASSWORD TO LOG IN: ");
     scanf("%d", &user_input_password);
+    }
+
     if (password == user_input_password)
     {
         printf("WELCOME TO MATOPS\n");
@@ -447,6 +451,7 @@ int main()
                     printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
                     printf("\t\t\t\t\t\t__________________________\n");
                     sys_choice = 0;
+                    flag = 1;
                     break;
                 }
             }
