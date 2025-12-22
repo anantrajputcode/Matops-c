@@ -11,16 +11,18 @@ int main()
     {
     if (flag == 0)
     {
-    printf("WELCOME TO MATOPS\n");
-    printf("__________________\n");
-    printf("ENTER PASSWORD TO LOG IN: ");
-    scanf("%d", &user_input_password);
+        printf("------------------\n");
+        printf("WELCOME TO MATOPS\n");
+        printf("------------------\n");
+        printf("ENTER PASSWORD TO LOG IN: ");
+        scanf("%d", &user_input_password);
     }
 
     if (password == user_input_password)
     {
+        printf("------------------\n");
         printf("WELCOME TO MATOPS\n");
-        printf("__________________\n");
+        printf("------------------\n");
         int choice;
         printf("CHOOSE OPERATIONS:\n");
         printf("1. MATRIX MULTIPLICATION\n");
@@ -94,6 +96,7 @@ int main()
             
                 }
             }
+            flag = 1;
         }
         else if (choice == 2)
         {
@@ -136,6 +139,7 @@ int main()
 
                 }
             }
+            flag = 1;
 
         }
         else if (choice == 3)
@@ -254,6 +258,7 @@ int main()
                     }
                 }
             }
+            flag = 1;
         }
         else if (choice == 4)
         {
@@ -307,6 +312,7 @@ int main()
                 printf("λ³ - %dλ² + %dλ - %d", traceA, sum_principle_minors, detA);
 
             }
+            flag = 1;
         }
         else if (choice == 5)
         {
@@ -341,6 +347,7 @@ int main()
                 float eigen_value2 = (traceA - sqrt(discriminant))/2;
                 printf("EIGEN VALUE OF MATRIX A IS : %f and %f", eigen_value1, eigen_value2);
             }
+            flag = 1;
         }
         else if (choice == 6)
         {
@@ -379,6 +386,7 @@ int main()
                 printf("X₂ = %.2d\n", arr1[0][1]);
                 printf("     %.2f", eigen_value2 - arr1[0][0]);
             }
+            flag = 1;
         }
         else if (choice == 7)
         {
@@ -405,15 +413,15 @@ int main()
                 }
                 printf("\n");
             }
-
+            flag = 1;
         }
         else if (choice == 8)
         {
             while (sys_choice != 5)
             {
-                printf("\t\t\t________________\n");
+                printf("\t\t\t---------------\n");
                 printf("\t\t\tSYSTEM SETTINGS\n");
-                printf("\t\t\t________________\n");
+                printf("\t\t\t---------------\n");
                 printf("\t\t\t1. VERSION NUMBER\n");
                 printf("\t\t\t2. AUTHOR\n");
                 printf("\t\t\t3. MAINTAINER\n");
@@ -423,33 +431,33 @@ int main()
                 scanf("%d", &sys_choice);
                 if (sys_choice == 1)
                 {
-                    printf("\t\t\t\t\t\t_______________________\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.2.0\n");
-                    printf("\t\t\t\t\t\t_______________________\n");
+                    printf("\t\t\t\t\t\t---------------------\n");
+                    printf("\t\t\t\t\t\tVersion Number: 2.2.1\n");
+                    printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
                 {
-                    printf("\t\t\t\t\t\t______________________\n");
+                    printf("\t\t\t\t\t\t--------------------\n");
                     printf("\t\t\t\t\t\tAuthor: ANANT RAJPUT\n");
-                    printf("\t\t\t\t\t\t______________________\n");
+                    printf("\t\t\t\t\t\t--------------------\n");
                 }
                 else if (sys_choice == 3)
                 {
-                    printf("\t\t\t\t\t\t____________________________\n");
+                    printf("\t\t\t\t\t\t---------------------------\n");
                     printf("\t\t\t\t\t\tMaintained by: ANANT RAJPUT\n");
-                    printf("\t\t\t\t\t\t____________________________\n");
+                    printf("\t\t\t\t\t\t---------------------------\n");
                 }
                 else if (sys_choice == 4)
                 {
-                    printf("\t\t\t\t\t\t_________________________________________\n");
+                    printf("\t\t\t\t\t\t----------------------------------------\n");
                     printf("\t\t\t\t\t\tRecent Update Date: 22 . DECEMBER . 2025\n");
-                    printf("\t\t\t\t\t\t__________________________________________\n");
+                    printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
                 {
-                    printf("\t\t\t\t\t\t__________________________\n");
+                    printf("\t\t\t\t\t\t--------------------------\n");
                     printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
-                    printf("\t\t\t\t\t\t__________________________\n");
+                    printf("\t\t\t\t\t\t--------------------------\n");
                     sys_choice = 0;
                     flag = 1;
                     break;
@@ -460,6 +468,7 @@ int main()
         else
         {
             printf("INVALID RESPOSE. VALID RESPONSE = 0 - 8");
+            flag = 1;
         }        
     }
     else
