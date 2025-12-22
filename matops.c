@@ -20,6 +20,7 @@ int main()
 
     if (password == user_input_password)
     {
+        try = 0;
         printf("------------------\n");
         printf("WELCOME TO MATOPS\n");
         printf("------------------\n");
@@ -482,7 +483,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.3.1\n");
+                    printf("\t\t\t\t\t\tVersion Number: 2.3.2\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
