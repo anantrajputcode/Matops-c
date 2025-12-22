@@ -11,9 +11,9 @@ int main()
     {
     if (flag == 0)
     {
-        printf("------------------\n");
-        printf("WELCOME TO MATOPS\n");
-        printf("------------------\n");
+        printf("\t\t\t\t\t\t------------------\n");
+        printf("\t\t\t\t\t\tWELCOME TO MATOPS\n");
+        printf("\t\t\t\t\t\t------------------\n");
         printf("ENTER PASSWORD TO LOG IN: ");
         scanf("%d", &user_input_password);
     }
@@ -34,8 +34,10 @@ int main()
         printf("7. TRANSPOSE OF A MATRIX\n");
         printf("8. SYSTEM SETTINGS\n");
         printf("0. EXIT\n");
+        printf("----------------------\n");
         printf("ENTER YOUR CHOICE:");
         scanf("%d", &choice);
+        printf("----------------------\n");
         int detA;
         if (choice == 1)
         {
@@ -50,11 +52,15 @@ int main()
             scanf("%u", &c2);
             if (r1 == 0 || c1 == 0 || r2 == 0 || c2 == 0)           
             {
+                printf("---------------------------------------------\n");
                 printf("\nROWS AND COLUMNS MUST BE GREATER THAN ZERO.\n");
+                printf("---------------------------------------------\n");
             }
             else if (c1 != r2)
             {
-                printf("\nSORRY! THE MULTIPLICATION OF THE MATRIX IS NOT POSSIBLE.");
+                printf("--------------------------------------------------------\n");
+                printf("SORRY! THE MULTIPLICATION OF THE MATRIX IS NOT POSSIBLE.\n");
+                printf("--------------------------------------------------------\n");
             }
             else
             {
@@ -75,6 +81,7 @@ int main()
                         scanf("%d", &arr2[i][j]);
                     }
                 }
+                printf("------------------------------------------------------------\n");
                 printf("\nTHE RESULT OF MULTIPLICATION OF MATRIX A AND MATRIX B IS:-\n");
                 for (i = 0; i < r1; i++)
                 {   
@@ -91,6 +98,7 @@ int main()
                     printf("\n");
             
                 }
+                printf("------------------------------------------------------------\n");
             }
             flag = 1;
         }
@@ -104,7 +112,9 @@ int main()
             int arr1[r1][c1];
             if (r1 != c1)
             {
+                printf("--------------------------\n");
                 printf("DETERMINANT DOES NOT EXIST\n");
+                printf("--------------------------\n");
             }
             else if (r1 == c1)
             {
@@ -119,19 +129,25 @@ int main()
                 if (r1 == 1)
                 {
                     detA = arr1[0][0];
-                    printf("DETERMINANAT OF MATRIX A IS : %d", detA);
+                    printf("---------------------------------\n");
+                    printf("DETERMINANAT OF MATRIX A IS : %d\n", detA);
+                    printf("----------------------------------\n");
                 }
                 else if (r1 == 2)
                 {
                     detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
-                    printf("DETERMINANT OF MATRIX A IS : %d", detA); 
+                    printf("-------------------------------\n");
+                    printf("DETERMINANT OF MATRIX A IS : %d\n", detA); 
+                    printf("-------------------------------\n");
                 }
                 else if (r1 == 3)
                 {
                     detA = arr1[0][0]*(arr1[1][1]*arr1[2][2] - arr1[1][2]*arr1[2][1])
                           - arr1[0][1]*(arr1[1][0]*arr1[2][2] - arr1[1][2]*arr1[2][0])
                           + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
-                    printf("DETERMINANT OF MATRIX A IS :%d", detA);
+                    printf("------------------------------\n");
+                    printf("DETERMINANT OF MATRIX A IS :%d\n", detA);
+                    printf("------------------------------\n");
 
                 }
             }
@@ -149,11 +165,15 @@ int main()
             float inv[r1][c1];
             if (r1 != c1)
             {
+                printf("----------------------\n");
                 printf("INVERSE DOES NOT EXIST\n");
+                printf("----------------------\n");
             }
             else if (r1 != 2 && r1 != 3 && r1 != 1)
             {
+                printf("--------------------------------------\n");
                 printf("ONLY 1X1, 2X2 AND 3X3 MATRIX SUPPORTED\n");
+                printf("--------------------------------------\n");
             }
             else if (r1 == 1)
             {   
@@ -169,10 +189,13 @@ int main()
                 inv[0][0] = 1/detA; 
                 if (detA == 0)
                 {
-                    printf("INVERSE DOES NOT EXIST");
+                    printf("----------------------\n");
+                    printf("INVERSE DOES NOT EXIST\n");
+                    printf("----------------------\n");
                 }
                 else if (detA != 0)
                 {
+                    printf("---------------------------\n");
                     printf("INVERSE OF MATRIX A IS : \n");
                     for (int i = 0; i < r1; i++)
                     {
@@ -181,6 +204,7 @@ int main()
                             printf("%.2f\n", inv[i][j]);
                         }
                     }
+                    printf("---------------------------\n");
                 }          
             }
             else if (r1 == 2)
@@ -195,7 +219,9 @@ int main()
                 detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
                 if (detA == 0)
                 {
-                    printf("INVERSE DOES NOT EXIST");
+                    printf("----------------------\n");
+                    printf("INVERSE DOES NOT EXIST\n");
+                    printf("-----------------------\n");
                 }
                 else if (detA != 0)
                 {
@@ -203,15 +229,17 @@ int main()
                     inv[0][1] = -arr1[0][1]/detA;
                     inv[1][0] = -arr1[1][0]/detA;
                     inv[1][1] = arr1[0][0]/detA;
+                    printf("---------------------------\n");
                     printf("INVERSE OF MATRIX A IS : \n");
-                for (int i = 0; i < r1; i++)
-                {
-                    for (int j = 0; j < c1; j++)
+                    for (int i = 0; i < r1; i++)
                     {
-                        printf("%.2f\t", inv[i][j]);
+                        for (int j = 0; j < c1; j++)
+                        {
+                            printf("%.2f\t", inv[i][j]);
+                        }
+                        printf("\n");
                     }
-                    printf("\n");
-                }
+                    printf("---------------------------\n");
                 }
             }
             else if (r1 == 3)
@@ -229,7 +257,9 @@ int main()
                        + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
                 if (detA == 0)
                 {
-                    printf("INVERSE DOES NOT EXIST");
+                    printf("-----------------------\n");
+                    printf("INVERSE DOES NOT EXIST\n");
+                    printf("-----------------------\n");
                 }
                 else if (detA != 0)
                 {
@@ -244,6 +274,7 @@ int main()
                     inv[2][0]=(arr1[1][0]*arr1[2][1]-arr1[1][1]*arr1[2][0])/detA;
                     inv[2][1]=-(arr1[0][0]*arr1[2][1]-arr1[0][1]*arr1[2][0])/detA;
                     inv[2][2]=(arr1[0][0]*arr1[1][1]-arr1[0][1]*arr1[1][0])/detA;
+                    printf("---------------------------\n");
                     for (int i = 0; i < r1; i++)
                     {
                     for (int j = 0; j < c1; j++)
@@ -252,6 +283,7 @@ int main()
                     }
                     printf("\n");
                     }
+                    printf("---------------------------\n");
                 }
             }
             flag = 1;
@@ -266,11 +298,15 @@ int main()
             int arr1[r1][c1];
             if (r1 != c1)
             {
-                printf("characteric equation is only defined for square matrix.");
+                printf("------------------------------------------------------\n");
+                printf("characteric equation is only defined for square matrix.\n");
+                printf("------------------------------------------------------\n");
             }
             else if(r1 != 2 && r1 != 3)
             {
-                printf("only 2x2 and 3x3 matrix is supported");
+                printf("------------------------------------\n");
+                printf("only 2x2 and 3x3 matrix is supported\n");
+                printf("------------------------------------\n");
             }
             else if(r1 == 2)
             {
@@ -284,8 +320,10 @@ int main()
                 }
                 detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
                 int traceA = arr1[0][0] + arr1[1][1];
+                printf("--------------------------------------\n");
                 printf("CHARATERSTIC EQUATION OF MATRIX A IS:\n");
-                printf("λ² - %dλ + %d", traceA, detA);
+                printf("λ² - %dλ + %d\n", traceA, detA);
+                printf("---------------------------------------\n");
             }
             else if (r1 == 3)
             {   
@@ -304,9 +342,10 @@ int main()
                 int sum_principle_minors = arr1[1][1] * arr1[2][2] - arr1[1][2] * arr1[2][1]
                                            + arr1[0][0] * arr1[2][2] - arr1[0][2] * arr1[2][0]
                                            + arr1[0][0] * arr1[1][1] - arr1[0][1] * arr1[1][0];
+                printf("---------------------------------------\n");
                 printf("CHARATERSTIC EQUATION OF MATRIX A IS:\n");
-                printf("λ³ - %dλ² + %dλ - %d", traceA, sum_principle_minors, detA);
-
+                printf("λ³ - %dλ² + %dλ - %d\n", traceA, sum_principle_minors, detA);
+                printf("----------------------------------------\n");
             }
             flag = 1;
         }
@@ -320,11 +359,15 @@ int main()
             int arr1[r1][c1];
             if (r1 != c1)
             {
+                printf("-------------------------------------------------\n");
                 printf("EIGEN VALUES ARE ONLY DEFINED FOR A SQUARE MATRIX\n");
+                printf("-------------------------------------------------\n");
             }
             else if(r1 != 2)
             {
+                printf("-----------------------------\n");
                 printf("ONLY 2x2 MARRIX ARE SUPPORTED\n");
+                printf("-----------------------------\n");
             }
             else if (r1 == 2)
             {
@@ -341,7 +384,9 @@ int main()
                 int discriminant = traceA * traceA - 4 * detA;
                 float eigen_value1 = (traceA + sqrt(discriminant))/2;
                 float eigen_value2 = (traceA - sqrt(discriminant))/2;
-                printf("EIGEN VALUE OF MATRIX A IS : %f and %f", eigen_value1, eigen_value2);
+                printf("-------------------------------------\n");
+                printf("EIGEN VALUE OF MATRIX A IS : %f and %f\n", eigen_value1, eigen_value2);
+                printf("-------------------------------------\n");
             }
             flag = 1;
         }
@@ -355,11 +400,15 @@ int main()
             int arr1[r1][c1];
             if (r1 != c1)
             {
+                printf("-------------------------------------------------\n");
                 printf("EIGEN VECTOR ARE ONLY DEFINED FOR A SQUARE MATRIX\n");
+                printf("-------------------------------------------------\n");
             }
             else if(r1 != 2)
             {
+                printf("-----------------------------\n");
                 printf("ONLY 2x2 MARRIX ARE SUPPORTED\n");
+                printf("-----------------------------\n");
             }
             else if (r1 == 2)
             {
@@ -376,11 +425,13 @@ int main()
                 int discriminant = traceA * traceA - 4 * detA;
                 float eigen_value1 = (traceA + sqrt(discriminant))/2;
                 float eigen_value2 = (traceA - sqrt(discriminant))/2;
+                printf("-------------------------------------------------\n");
                 printf("EIGEN VECTOR FOR 2x2 MATRIX ARE:\n");
                 printf("X₁ = %.2d\n", arr1[0][1]);
                 printf("     %.2f\n", eigen_value1 - arr1[0][0]);
                 printf("X₂ = %.2d\n", arr1[0][1]);
-                printf("     %.2f", eigen_value2 - arr1[0][0]);
+                printf("     %.2f\n", eigen_value2 - arr1[0][0]);
+                printf("-------------------------------------------------\n");
             }
             flag = 1;
         }
@@ -400,6 +451,7 @@ int main()
                     scanf("%d", &arr1[i][j]);
                 }
             }
+            printf("------------------------------------\n");
             printf("THE TRANSPOSE OF THE MATRIX A IS:\n");
             for (int i = 0; i < c1; i++)
             {
@@ -409,6 +461,7 @@ int main()
                 }
                 printf("\n");
             }
+            printf("------------------------------------\n");
             flag = 1;
         }
         else if (choice == 8)
@@ -429,7 +482,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.3.0\n");
+                    printf("\t\t\t\t\t\tVersion Number: 2.3.1\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -447,7 +500,7 @@ int main()
                 else if (sys_choice == 4)
                 {
                     printf("\t\t\t\t\t\t----------------------------------------\n");
-                    printf("\t\t\t\t\t\tRecent Update Date: 22 . DECEMBER . 2025\n");
+                    printf("\t\t\t\t\t\tRecent Update Date: 23 . DECEMBER . 2025\n");
                     printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
@@ -480,7 +533,9 @@ int main()
         }
         else
         {
-            printf("INVALID RESPOSE. VALID RESPONSE = 0 - 8");
+            printf("\t\t\t\t\t\t---------------------------------------\n");
+            printf("\t\t\t\t\t\tINVALID RESPOSE. VALID RESPONSE = 0 - 8\n");
+            printf("\t\t\t\t\t\t---------------------------------------\n");
             flag = 1;
         }        
     }
@@ -488,12 +543,16 @@ int main()
     {
         if (try < 4)
         {
-            printf("INCORRECT PASSWORD.TRY AGAIN\n");
+            printf("\t\t\t\t\t\t----------------------------\n");
+            printf("\t\t\t\t\t\tINCORRECT PASSWORD.TRY AGAIN\n");
+            printf("\t\t\t\t\t\t----------------------------\n");
             try++;
         }
         else if (try == 4)
         {
-            printf("INCORRECT PASSWORD.NO MORE TRIES LEFT\n");
+            printf("\t\t\t\t\t\t------------------------------------\n");
+            printf("\t\t\t\t\t\tINCORRECT PASSWORD.NO MORE TRIES LEFT\n");
+            printf("\t\t\t\t\t\t------------------------------------\n");
             try++;
         }
     }
