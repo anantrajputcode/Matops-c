@@ -483,7 +483,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.3.2\n");
+                    printf("\t\t\t\t\t\tVersion Number: 2.4.2\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -522,6 +522,12 @@ int main()
                     flag = 0;
                     break;
                 }
+                else
+                {
+                    printf("\t\t\t\t\t\t---------------------------------------------------------\n");
+                    printf("\t\t\t\t\t\tInvalid Response Detected (%d). Valid response = (1 - 6)\n", sys_choice);
+                    printf("\t\t\t\t\t\t---------------------------------------------------------\n"); 
+                }
             }
 
         }
@@ -534,9 +540,9 @@ int main()
         }
         else
         {
-            printf("\t\t\t\t\t\t---------------------------------------\n");
-            printf("\t\t\t\t\t\tINVALID RESPOSE. VALID RESPONSE = 0 - 8\n");
-            printf("\t\t\t\t\t\t---------------------------------------\n");
+            printf("\t\t\t\t\t\t---------------------------------------------\n");
+            printf("\t\t\t\t\t\tINVALID RESPOSE (%d). VALID RESPONSE = 0 - 8\n", choice);
+            printf("\t\t\t\t\t\t----------------------------------------------\n");
             flag = 1;
         }        
     }
@@ -544,16 +550,16 @@ int main()
     {
         if (try < 4)
         {
-            printf("\t\t\t\t\t\t----------------------------\n");
-            printf("\t\t\t\t\t\tINCORRECT PASSWORD.TRY AGAIN\n");
-            printf("\t\t\t\t\t\t----------------------------\n");
+            printf("\t\t\t\t\t\t-----------------------------------------------\n");
+            printf("\t\t\t\t\t\tINCORRECT PASSWORD.NUMBER OF ATTEMPST LEFT = %d\n", 4 - try);
+            printf("\t\t\t\t\t\t-----------------------------------------------\n");
             try++;
         }
         else if (try == 4)
         {
-            printf("\t\t\t\t\t\t------------------------------------\n");
-            printf("\t\t\t\t\t\tINCORRECT PASSWORD.NO MORE TRIES LEFT\n");
-            printf("\t\t\t\t\t\t------------------------------------\n");
+            printf("\t\t\t\t\t\t----------------------------------------\n");
+            printf("\t\t\t\t\t\tINCORRECT PASSWORD.NO MORE ATTEMPTS LEFT\n");
+            printf("\t\t\t\t\t\t-----------------------------------------\n");
             try++;
         }
     }
