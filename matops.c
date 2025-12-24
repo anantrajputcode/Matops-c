@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 int main()
 {   
-    int password = 12345;
+    int password = 1;
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
     int flag = 0;
+    int flag_for_pass_change = 0;
     while (try != 5)
     {
     if (flag == 0)
@@ -16,6 +18,7 @@ int main()
         printf("\t\t\t\t\t\t------------------\n");
         printf("ENTER PASSWORD TO LOG IN: ");
         scanf("%d", &user_input_password);
+        flag_for_pass_change = 0;
     }
 
     if (password == user_input_password)
@@ -34,6 +37,7 @@ int main()
         printf("6. EIGEN VECTOR\n");
         printf("7. TRANSPOSE OF A MATRIX\n");
         printf("8. SYSTEM SETTINGS\n");
+        printf("9. CLEAR SCREEN\n");
         printf("0. EXIT\n");
         printf("----------------------\n");
         printf("ENTER YOUR CHOICE:");
@@ -467,8 +471,12 @@ int main()
         }
         else if (choice == 8)
         {
-            while (sys_choice != 5)
+            while (sys_choice != 8)
             {
+                if (flag_for_pass_change == 1)
+                {
+                    break;
+                }
                 printf("\t\t\t---------------\n");
                 printf("\t\t\tSYSTEM SETTINGS\n");
                 printf("\t\t\t---------------\n");
@@ -476,14 +484,17 @@ int main()
                 printf("\t\t\t2. AUTHOR\n");
                 printf("\t\t\t3. MAINTAINER\n");
                 printf("\t\t\t4. RECENT UPDATE DATE\n");
-                printf("\t\t\t5. RETURN TO PREVIOUS MENU\n");
-                printf("\t\t\t6. LOG OUT\n");
+                printf("\t\t\t5. SUPPORTED MATRIX LIMITS\n");
+                printf("\t\t\t6. CHANGE PASSWORD\n");
+                printf("\t\t\t7. CLEAR SCREEN\n");
+                printf("\t\t\t8. RETURN TO PREVIOUS MENU\n");
+                printf("\t\t\t9. LOG OUT\n");
                 printf("\t\t\tENTER THE CHOICE FOR SETTINGS: ");
                 scanf("%d", &sys_choice);
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.4.2\n");
+                    printf("\t\t\t\t\t\tVersion Number: 3.2.4\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -501,10 +512,88 @@ int main()
                 else if (sys_choice == 4)
                 {
                     printf("\t\t\t\t\t\t----------------------------------------\n");
-                    printf("\t\t\t\t\t\tRecent Update Date: 23 . DECEMBER . 2025\n");
+                    printf("\t\t\t\t\t\tRecent Update Date: 24 . DECEMBER . 2025\n");
                     printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
+                {
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                    printf("\t\t\t\t\t\tSUPPORTED MATRIX LIMITS\n");
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                    printf("\t\t\t\t\t\t• Multiplication : Any size (A[r×c], B[c×k])\n");
+                    printf("\t\t\t\t\t\t• Determinant    : Up to 3 × 3\n");
+                    printf("\t\t\t\t\t\t• Inverse        : 1 × 1, 2 × 2, 3 × 3\n");
+                    printf("\t\t\t\t\t\t• Eigen Values   : 2 × 2 , 3 × 3\n");
+                    printf("\t\t\t\t\t\t• Eigen Vectors  : 2 × 2 only\n");
+                    printf("\t\t\t\t\t\t• Transpose      : Any size\n");
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                }
+                else if (sys_choice == 6)
+                {
+                    int user_change_current_pass_inp;
+                    int pass1, pass2;
+                    int pass_change_check_try = 0;
+                    while(pass_change_check_try != 3)
+                    {
+                        printf("\t\t\t\t\t\t\t---------------------------------\n");
+                        printf("\t\t\t\t\t\t\tEnter the Current Password: ");
+                        scanf("%d", &user_change_current_pass_inp);
+                        printf("\t\t\t\t\t\t\t---------------------------------\n");
+                        if (password == user_change_current_pass_inp)
+                        {
+                            int pass_change_try = 0;
+                            while (pass_change_try != 3)
+                            {
+                                printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\tEnter New Password:");
+                                scanf("%d", &pass1);
+                                printf("\t\t\t\t\t\t\tEnter the Above Password Again:");
+                                scanf("%d", &pass2);
+                                if (pass1 == pass2)
+                                {
+                                    password = pass1;
+                                    printf("\t\t\t\t\t\t\tPASSWORD HAS BEEN CHANGED SUCCESSFULLY.\n");
+                                    printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                    pass_change_check_try = 3;
+                                    break;
+                                }
+                                else if (pass1 != pass2)
+                                {
+                                    printf("\t\t\t\t\t\t\tBoth input password are different. TRY AGAIN\n");
+                                    printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                    pass_change_try++;
+                                }
+
+                            }
+                        }
+                        else if (password != user_change_current_pass_inp)
+                        {
+                            if (pass_change_check_try < 2)
+                            {
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\tPassword is INCORRECT,TRY AGAIN (Attempts left = %d)\n",2 - pass_change_check_try );
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                pass_change_check_try++;
+                            }
+                            else if (pass_change_check_try == 2)
+                            {
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                printf("Password is INCORRECT,NO MORE TRIES LEFT\n");
+                                printf("Commencing FORCEFUL EVICTION due to security reasons\n");
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                flag_for_pass_change = 1;
+                                flag = 0;
+                                break;
+
+                            }
+                        }
+                    }
+                }
+                else if (sys_choice ==7)
+                {
+                    system("clear");
+                }
+                else if (sys_choice == 8)
                 {
                     printf("\t\t\t\t\t\t--------------------------\n");
                     printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
@@ -513,7 +602,7 @@ int main()
                     flag = 1;
                     break;
                 }
-                else if (sys_choice == 6)
+                else if (sys_choice == 9)
                 {
                     printf("\t\t\t\t\t\t-------------------------------------\n");
                     printf("\t\t\t\t\t\tLogged Out of the System Successfully.\n");
@@ -531,6 +620,11 @@ int main()
             }
 
         }
+        else if (choice == 9)
+        {
+            system("clear");
+            flag = 1;
+        }
         else if (choice == 0)
         {
             printf("\t\t\t\t\t\t-------------------------------\n");
@@ -541,7 +635,7 @@ int main()
         else
         {
             printf("\t\t\t\t\t\t---------------------------------------------\n");
-            printf("\t\t\t\t\t\tINVALID RESPOSE (%d). VALID RESPONSE = 0 - 8\n", choice);
+            printf("\t\t\t\t\t\tINVALID RESPOSE (%d). VALID RESPONSE = 0 - 9\n", choice);
             printf("\t\t\t\t\t\t----------------------------------------------\n");
             flag = 1;
         }        
