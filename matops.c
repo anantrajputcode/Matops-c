@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 int main()
 {   
     int password = 1;
@@ -36,6 +37,7 @@ int main()
         printf("6. EIGEN VECTOR\n");
         printf("7. TRANSPOSE OF A MATRIX\n");
         printf("8. SYSTEM SETTINGS\n");
+        printf("9. CLEAR SCREEN\n");
         printf("0. EXIT\n");
         printf("----------------------\n");
         printf("ENTER YOUR CHOICE:");
@@ -492,7 +494,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 2.4.2\n");
+                    printf("\t\t\t\t\t\tVersion Number: 3.2.4\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -510,7 +512,7 @@ int main()
                 else if (sys_choice == 4)
                 {
                     printf("\t\t\t\t\t\t----------------------------------------\n");
-                    printf("\t\t\t\t\t\tRecent Update Date: 23 . DECEMBER . 2025\n");
+                    printf("\t\t\t\t\t\tRecent Update Date: 24 . DECEMBER . 2025\n");
                     printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
@@ -521,7 +523,7 @@ int main()
                     printf("\t\t\t\t\t\t• Multiplication : Any size (A[r×c], B[c×k])\n");
                     printf("\t\t\t\t\t\t• Determinant    : Up to 3 × 3\n");
                     printf("\t\t\t\t\t\t• Inverse        : 1 × 1, 2 × 2, 3 × 3\n");
-                    printf("\t\t\t\t\t\t• Eigen Values   : 2 × 2 only\n");
+                    printf("\t\t\t\t\t\t• Eigen Values   : 2 × 2 , 3 × 3\n");
                     printf("\t\t\t\t\t\t• Eigen Vectors  : 2 × 2 only\n");
                     printf("\t\t\t\t\t\t• Transpose      : Any size\n");
                     printf("\t\t\t\t\t\t------------------------------------------------\n");
@@ -587,6 +589,10 @@ int main()
                         }
                     }
                 }
+                else if (sys_choice ==7)
+                {
+                    system("clear");
+                }
                 else if (sys_choice == 8)
                 {
                     printf("\t\t\t\t\t\t--------------------------\n");
@@ -614,6 +620,11 @@ int main()
             }
 
         }
+        else if (choice == 9)
+        {
+            system("clear");
+            flag = 1;
+        }
         else if (choice == 0)
         {
             printf("\t\t\t\t\t\t-------------------------------\n");
@@ -624,7 +635,7 @@ int main()
         else
         {
             printf("\t\t\t\t\t\t---------------------------------------------\n");
-            printf("\t\t\t\t\t\tINVALID RESPOSE (%d). VALID RESPONSE = 0 - 8\n", choice);
+            printf("\t\t\t\t\t\tINVALID RESPOSE (%d). VALID RESPONSE = 0 - 9\n", choice);
             printf("\t\t\t\t\t\t----------------------------------------------\n");
             flag = 1;
         }        
