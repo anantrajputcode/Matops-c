@@ -7,6 +7,7 @@ int main()
     int sys_choice = 0;
     int try = 0;
     int flag = 0;
+    int flag_for_pass_change = 0;
     while (try != 5)
     {
     if (flag == 0)
@@ -16,6 +17,7 @@ int main()
         printf("\t\t\t\t\t\t------------------\n");
         printf("ENTER PASSWORD TO LOG IN: ");
         scanf("%d", &user_input_password);
+        flag_for_pass_change = 0;
     }
 
     if (password == user_input_password)
@@ -469,6 +471,10 @@ int main()
         {
             while (sys_choice != 8)
             {
+                if (flag_for_pass_change == 1)
+                {
+                    break;
+                }
                 printf("\t\t\t---------------\n");
                 printf("\t\t\tSYSTEM SETTINGS\n");
                 printf("\t\t\t---------------\n");
@@ -520,7 +526,67 @@ int main()
                     printf("\t\t\t\t\t\t• Transpose      : Any size\n");
                     printf("\t\t\t\t\t\t------------------------------------------------\n");
                 }
-                
+                else if (sys_choice == 6)
+                {
+                    int user_change_current_pass_inp;
+                    int pass1, pass2;
+                    int pass_change_check_try = 0;
+                    while(pass_change_check_try != 3)
+                    {
+                        printf("\t\t\t\t\t\t\t---------------------------------\n");
+                        printf("\t\t\t\t\t\t\tEnter the Current Password: ");
+                        scanf("%d", &user_change_current_pass_inp);
+                        printf("\t\t\t\t\t\t\t---------------------------------\n");
+                        if (password == user_change_current_pass_inp)
+                        {
+                            int pass_change_try = 0;
+                            while (pass_change_try != 3)
+                            {
+                                printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\tEnter New Password:");
+                                scanf("%d", &pass1);
+                                printf("\t\t\t\t\t\t\tEnter the Above Password Again:");
+                                scanf("%d", &pass2);
+                                if (pass1 == pass2)
+                                {
+                                    password = pass1;
+                                    printf("\t\t\t\t\t\t\tPASSWORD HAS BEEN CHANGED SUCCESSFULLY.\n");
+                                    printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                    pass_change_check_try = 3;
+                                    break;
+                                }
+                                else if (pass1 != pass2)
+                                {
+                                    printf("\t\t\t\t\t\t\tBoth input password are different. TRY AGAIN\n");
+                                    printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
+                                    pass_change_try++;
+                                }
+
+                            }
+                        }
+                        else if (password != user_change_current_pass_inp)
+                        {
+                            if (pass_change_check_try < 2)
+                            {
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\tPassword is INCORRECT,TRY AGAIN (Attempts left = %d)\n",2 - pass_change_check_try );
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                pass_change_check_try++;
+                            }
+                            else if (pass_change_check_try == 2)
+                            {
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                printf("Password is INCORRECT,NO MORE TRIES LEFT\n");
+                                printf("Commencing FORCEFUL EVICTION due to security reasons\n");
+                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                flag_for_pass_change = 1;
+                                flag = 0;
+                                break;
+
+                            }
+                        }
+                    }
+                }
                 else if (sys_choice == 8)
                 {
                     printf("\t\t\t\t\t\t--------------------------\n");
