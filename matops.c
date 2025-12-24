@@ -2,7 +2,7 @@
 #include <math.h>
 int main()
 {   
-    int password = 12345;
+    int password = 1;
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
@@ -467,7 +467,7 @@ int main()
         }
         else if (choice == 8)
         {
-            while (sys_choice != 5)
+            while (sys_choice != 8)
             {
                 printf("\t\t\t---------------\n");
                 printf("\t\t\tSYSTEM SETTINGS\n");
@@ -476,8 +476,11 @@ int main()
                 printf("\t\t\t2. AUTHOR\n");
                 printf("\t\t\t3. MAINTAINER\n");
                 printf("\t\t\t4. RECENT UPDATE DATE\n");
-                printf("\t\t\t5. RETURN TO PREVIOUS MENU\n");
-                printf("\t\t\t6. LOG OUT\n");
+                printf("\t\t\t5. SUPPORTED MATRIX LIMITS\n");
+                printf("\t\t\t6. CHANGE PASSWORD\n");
+                printf("\t\t\t7. CLEAR SCREEN\n");
+                printf("\t\t\t8. RETURN TO PREVIOUS MENU\n");
+                printf("\t\t\t9. LOG OUT\n");
                 printf("\t\t\tENTER THE CHOICE FOR SETTINGS: ");
                 scanf("%d", &sys_choice);
                 if (sys_choice == 1)
@@ -506,6 +509,20 @@ int main()
                 }
                 else if (sys_choice == 5)
                 {
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                    printf("\t\t\t\t\t\tSUPPORTED MATRIX LIMITS\n");
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                    printf("\t\t\t\t\t\t• Multiplication : Any size (A[r×c], B[c×k])\n");
+                    printf("\t\t\t\t\t\t• Determinant    : Up to 3 × 3\n");
+                    printf("\t\t\t\t\t\t• Inverse        : 1 × 1, 2 × 2, 3 × 3\n");
+                    printf("\t\t\t\t\t\t• Eigen Values   : 2 × 2 only\n");
+                    printf("\t\t\t\t\t\t• Eigen Vectors  : 2 × 2 only\n");
+                    printf("\t\t\t\t\t\t• Transpose      : Any size\n");
+                    printf("\t\t\t\t\t\t------------------------------------------------\n");
+                }
+                
+                else if (sys_choice == 8)
+                {
                     printf("\t\t\t\t\t\t--------------------------\n");
                     printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
                     printf("\t\t\t\t\t\t--------------------------\n");
@@ -513,7 +530,7 @@ int main()
                     flag = 1;
                     break;
                 }
-                else if (sys_choice == 6)
+                else if (sys_choice == 9)
                 {
                     printf("\t\t\t\t\t\t-------------------------------------\n");
                     printf("\t\t\t\t\t\tLogged Out of the System Successfully.\n");
