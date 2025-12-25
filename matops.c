@@ -3,7 +3,7 @@
 #include <stdlib.h>
 int main()
 {   
-    int password = 1;
+    int password = 12345;
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
@@ -494,7 +494,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 3.2.4\n");
+                    printf("\t\t\t\t\t\tVersion Number: 3.2.5\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -512,7 +512,7 @@ int main()
                 else if (sys_choice == 4)
                 {
                     printf("\t\t\t\t\t\t----------------------------------------\n");
-                    printf("\t\t\t\t\t\tRecent Update Date: 24 . DECEMBER . 2025\n");
+                    printf("\t\t\t\t\t\tRecent Update Date: 25 . DECEMBER . 2025\n");
                     printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
@@ -599,6 +599,7 @@ int main()
                     printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
                     printf("\t\t\t\t\t\t--------------------------\n");
                     sys_choice = 0;
+                    user_input_password = password;
                     flag = 1;
                     break;
                 }
