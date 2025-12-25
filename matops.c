@@ -2,13 +2,27 @@
 #include <math.h>
 #include <stdlib.h>
 int main()
-{   
-    int password = 12345;
+{   int password;
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
     int flag = 0;
     int flag_for_pass_change = 0;
+    FILE *fp;
+    fp = fopen("password.txt", "r");
+
+    if (fp == NULL || fscanf(fp, "%d", &password) != 1)
+    {
+        password = 12345;  
+
+        fp = fopen("password.txt", "w");
+        fprintf(fp, "%d", password);
+        fclose(fp);
+    }
+    else
+    {
+        fclose(fp);
+    }
     while (try != 5)
     {
     if (flag == 0)
@@ -494,7 +508,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 3.2.5\n");
+                    printf("\t\t\t\t\t\tVersion Number: 4.0.0\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -555,6 +569,9 @@ int main()
                                     printf("\t\t\t\t\t\t\tPASSWORD HAS BEEN CHANGED SUCCESSFULLY.\n");
                                     printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
                                     pass_change_check_try = 3;
+                                    fp = fopen("password.txt", "w");
+                                    fprintf(fp, "%d", password);
+                                    fclose(fp);
                                     break;
                                 }
                                 else if (pass1 != pass2)
@@ -577,10 +594,10 @@ int main()
                             }
                             else if (pass_change_check_try == 2)
                             {
-                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
-                                printf("Password is INCORRECT,NO MORE TRIES LEFT\n");
-                                printf("Commencing FORCEFUL EVICTION due to security reasons\n");
-                                printf("\t\t\t\t\t\t\t----------------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\t---------------------------------------------------------------------\n");
+                                printf("\t\t\t\t\t\t\tPassword is INCORRECT,NO MORE TRIES LEFT\n");
+                                printf("\t\t\t\t\t\t\tCommencing FORCEFUL EVICTION due to security reasons.....LOADING.....\n");
+                                printf("\t\t\t\t\t\t\t---------------------------------------------------------------------\n");
                                 flag_for_pass_change = 1;
                                 flag = 0;
                                 break;
