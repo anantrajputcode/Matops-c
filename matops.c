@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 int main()
-{   int password;
+{   
+    char forgot;
+    int password;
     int user_input_password = 0;
     int sys_choice = 0;
     int try = 0;
@@ -30,8 +33,30 @@ int main()
         printf("\t\t\t\t\t\t------------------\n");
         printf("\t\t\t\t\t\tWELCOME TO MATOPS\n");
         printf("\t\t\t\t\t\t------------------\n");
-        printf("ENTER PASSWORD TO LOG IN: ");
+        printf("ENTER PASSWORD TO LOG IN (enter 101 for forgot password): ");
         scanf("%d", &user_input_password);
+        if (user_input_password == 101)
+        {
+            printf("What is the name of author: ");
+            char author[50];
+            scanf(" %[^\n]", author);
+            if ((strcmp(author, "anant rajput") == 0 )|| (strcmp(author, "ANANT RAJPUT") == 0))
+            {
+                printf("\t\t\t\t\t------------------------========\n");
+                printf("\t\t\t\t\tThe Current Password is : %d\n", password);
+                printf("\t\t\t\t\t------------------------========\n");
+                continue;
+            }
+            else
+            {
+                printf("\t\t\t------------------------------------------------------\n");
+                printf("\t\t\tFailed to retrive password.commencing FORCE EVICTION.\n");
+                printf("\t\t\t------------------------------------------------------\n");
+                break;
+            }
+
+
+        }
         flag_for_pass_change = 0;
     }
 
@@ -508,7 +533,7 @@ int main()
                 if (sys_choice == 1)
                 {
                     printf("\t\t\t\t\t\t---------------------\n");
-                    printf("\t\t\t\t\t\tVersion Number: 4.0.0\n");
+                    printf("\t\t\t\t\t\tVersion Number: 4.1.1\n");
                     printf("\t\t\t\t\t\t---------------------\n");
                 }
                 else if (sys_choice == 2)
@@ -526,7 +551,7 @@ int main()
                 else if (sys_choice == 4)
                 {
                     printf("\t\t\t\t\t\t----------------------------------------\n");
-                    printf("\t\t\t\t\t\tRecent Update Date: 25 . DECEMBER . 2025\n");
+                    printf("\t\t\t\t\t\tRecent Update Date: 26 . DECEMBER . 2025\n");
                     printf("\t\t\t\t\t\t----------------------------------------\n");
                 }
                 else if (sys_choice == 5)
@@ -559,8 +584,15 @@ int main()
                             while (pass_change_try != 3)
                             {
                                 printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
-                                printf("\t\t\t\t\t\t\tEnter New Password:");
+                                printf("\t\t\t\t\t\t\tEnter New Password: ");
                                 scanf("%d", &pass1);
+                                if (pass1 == 101)
+                                {
+                                    printf("\t\t\t\t\t-------------------------------------------------------------------\n");
+                                    printf("\t\t\t\t\t[101] can't be used as PASSWORD as it is alloted to SYSTEM COMMANDS.\n");
+                                    printf("\t\t\t\t\t-------------------------------------------------------------------\n");
+                                    continue;
+                                }
                                 printf("\t\t\t\t\t\t\tEnter the Above Password Again:");
                                 scanf("%d", &pass2);
                                 if (pass1 == pass2)
