@@ -3,7 +3,7 @@
 A comprehensive command-line matrix operations calculator written in C, featuring password protection, multiple matrix operations, and an intuitive menu-driven interface.
 
 **Author:** Anant Rajput  
-**Version:** 4.0.0  
+**Version:** 4.1.1  
 **Last Updated:** December 25, 2025
 
 ---
