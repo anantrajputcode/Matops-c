@@ -3,8 +3,8 @@
 A comprehensive command-line matrix operations calculator written in C, featuring password protection, multiple matrix operations, and an intuitive menu-driven interface.
 
 **Author:** Anant Rajput  
-**Version:** 4.1.1  
-**Last Updated:** December 26, 2025
+**Version:** 4.2.1  
+**Last Updated:** December 27, 2025
 
 ---
 
@@ -19,9 +19,11 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 - [System Settings](#-system-settings)
 - [Error Handling](#-error-handling)
 - [Limitations](#-limitations)
+- [Security](#-security)
 - [Future Enhancements](#-future-enhancements)
 - [Contributing](#-contributing)
 - [License](#-license)
+- [Contact](#-contact)
 
 ---
 
@@ -29,6 +31,7 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 - **🔐 Password Protected:** Secure login system with 5-attempt limit and persistent password storage
 - **💾 Password Persistence:** Password saved to `password.txt` file (default: `12345`)
+- **🔒 Password Recovery:** Security question-based password recovery system
 - **📊 Seven Matrix Operations:** Complete suite of linear algebra operations
 - **✅ Input Validation:** Comprehensive dimension and compatibility checks
 - **🎯 User-Friendly Interface:** Clear, menu-driven navigation
@@ -36,7 +39,7 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 - **🧹 Screen Management:** Clear screen functionality for better organization
 - **💾 Memory Efficient:** Dynamic memory allocation using VLAs
 - **🔄 Session Persistence:** Continue operations without restarting
-- **🔒 Security Features:** Forceful eviction after failed password change attempts
+- **🔒 Security Features:** Forceful eviction after failed authentication attempts
 
 ---
 
@@ -105,10 +108,13 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 ## 📦 Installation
 
-### Clone the Repository
+### Clone or Download
 ```bash
+# If using git
 git clone https://github.com/yourusername/matops.git
 cd matops
+
+# Or download the source file directly
 ```
 
 ### Compile the Program
@@ -124,12 +130,14 @@ gcc -std=c99 matops.c -o matops -lm -Wall
 **Note:** The `-lm` flag is required to link the math library for `sqrt()` function.
 
 ### For Windows Users
-Replace `system("clear")` with `system("cls")` in the source code before compiling.
+Replace `system("clear")` with `system("cls")` in the source code before compiling, or add conditional compilation:
 
-Find and replace in these locations:
 ```c
-// Around line 581
-system("cls");  // Instead of system("clear")
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 ```
 
 ---
@@ -150,8 +158,9 @@ On first run, the program will:
 ### Login
 - **Default Password:** `12345`
 - **Attempts Allowed:** 5
-- **Password Storage:** Saved in `password.txt`
-- Password can be changed via System Settings (Option 8 → 6)
+- **Password Recovery:** Enter `101` to access password recovery
+- **Recovery Question:** "What is the name of author?"
+- **Answer:** `anant rajput` or `ANANT RAJPUT` (case-insensitive)
 
 ### Main Menu Navigation
 ```
@@ -382,7 +391,7 @@ SYSTEM SETTINGS
 ### System Settings Options
 
 #### 1. Version Number
-Displays current version: **4.0.0**
+Displays current version: **4.2.1**
 
 #### 2. Author
 Shows author information: **ANANT RAJPUT**
@@ -391,7 +400,7 @@ Shows author information: **ANANT RAJPUT**
 Displays maintainer: **ANANT RAJPUT**
 
 #### 4. Recent Update Date
-Last updated: **25 . DECEMBER . 2025**
+Last updated: **27 . DECEMBER . 2025**
 
 #### 5. Supported Matrix Limits
 ```
@@ -412,9 +421,9 @@ SUPPORTED MATRIX LIMITS
 
 - Requires current password verification (3 attempts)
 - New password must be entered twice for confirmation
+- Password `101` is reserved for system commands and cannot be used
 - Password saved to `password.txt` automatically
 - Automatic **FORCEFUL EVICTION** after 3 failed verification attempts
-- Security feature to prevent unauthorized password changes
 
 **Password Change Flow:**
 1. Enter current password for verification
@@ -476,6 +485,7 @@ The program validates and handles various error conditions:
 |------------|------------------|---------------|
 | **Login Failure** | 5 attempts | "INCORRECT PASSWORD. NUMBER OF ATTEMPST LEFT = X" |
 | **Final Login Attempt** | After 5th failure | "INCORRECT PASSWORD. NO MORE ATTEMPTS LEFT" → Program exits |
+| **Password Recovery Failure** | 1 attempt | "Failed to retrive password.commencing FORCE EVICTION." |
 | **Password Change Verification** | 3 attempts | "Password is INCORRECT, TRY AGAIN (Attempts left = X)" |
 | **Password Change Final Failure** | After 3rd failure | "FORCEFUL EVICTION" → Logged out |
 
@@ -485,59 +495,6 @@ The program validates and handles various error conditions:
 |------------|-------------|---------------|
 | **Invalid Main Menu Choice** | 0-9 | "INVALID RESPOSE (X). VALID RESPONSE = 0 - 9" |
 | **Invalid Settings Choice** | 1-9 | "Invalid Response Detected (X). Valid response = (1 - 6)" |
-
-### Operation-Specific Errors
-
-#### Determinant Errors
-```
---------------------------
-DETERMINANT DOES NOT EXIST
---------------------------
-```
-Shown when matrix is not square.
-
-#### Inverse Errors
-```
-----------------------
-INVERSE DOES NOT EXIST
-----------------------
-```
-Shown when:
-- Matrix is not square
-- Determinant is zero (singular matrix)
-
-```
---------------------------------------
-ONLY 1X1, 2X2 AND 3X3 MATRIX SUPPORTED
---------------------------------------
-```
-Shown for matrices larger than 3×3.
-
-#### Characteristic Equation Errors
-```
-------------------------------------------------------
-characteric equation is only defined for square matrix.
-------------------------------------------------------
-```
-
-```
-------------------------------------
-only 2x2 and 3x3 matrix is supported
-------------------------------------
-```
-
-#### Eigenvalue/Eigenvector Errors
-```
--------------------------------------------------
-EIGEN VALUES ARE ONLY DEFINED FOR A SQUARE MATRIX
--------------------------------------------------
-```
-
-```
------------------------------
-ONLY 2x2 MARRIX ARE SUPPORTED
------------------------------
-```
 
 ---
 
@@ -582,7 +539,6 @@ ONLY 2x2 MARRIX ARE SUPPORTED
 
 - **Password Security:**
   - Password stored in plain text in `password.txt`
-  - Password stored as integer (numeric only)
   - File permissions not explicitly set
   - No encryption applied
 
@@ -593,24 +549,76 @@ ONLY 2x2 MARRIX ARE SUPPORTED
 
 ### Known Issues
 
-1. **Eigenvector Formatting:** Uses `%.2d` instead of `%.2f` for float values (line in code shows formatting inconsistency)
+1. **Complex Eigenvalues:** When a 2×2 matrix has complex eigenvalues (discriminant < 0), `sqrt()` of negative number produces `nan` without explanation
 
-2. **Complex Eigenvalues:** When a 2×2 matrix has complex eigenvalues (discriminant < 0), `sqrt()` of negative number produces `nan` without explanation
-
-3. **Input Validation:** No validation for non-numeric input
+2. **Input Validation:** No validation for non-numeric input
    - Entering letters causes undefined behavior
    - Program may crash or produce garbage values
 
-4. **Typos in Output:**
-   - "ATTEMPST" instead of "ATTEMPTS" (line 695)
-   - "characteric" instead of "characteristic" (line 406)
-   - "MARRIX" instead of "MATRIX" (line 521, 550)
+3. **Typos in Output:**
+   - "ATTEMPST" instead of "ATTEMPTS"
+   - "characteric" instead of "characteristic"
+   - "MARRIX" instead of "MATRIX"
+   - "retrive" instead of "retrieve"
 
-5. **Inconsistent Validation Messages:** Settings menu shows "Valid response = (1 - 6)" but actually accepts 1-9
+4. **Password File Security:** Plain text password storage is a security risk
 
-6. **Password File Security:** Plain text password storage is a security risk
+5. **No Confirmation:** Exit (option 0) doesn't ask for confirmation
 
-7. **No Confirmation:** Exit (option 0) doesn't ask for confirmation
+---
+
+## 🔐 Security
+
+### Security Considerations
+
+⚠️ **Important Security Notes:**
+
+1. **Password Storage:**
+   - Passwords stored in plain text in `password.txt`
+   - **Not suitable for sensitive environments**
+   - For educational/personal use only
+
+2. **File Permissions:**
+   - `password.txt` created with default permissions
+   - Recommend setting `chmod 600 password.txt` on Unix systems
+
+3. **Input Validation:**
+   - Limited validation of user input
+   - Malicious input may cause crashes
+   - Do not expose to untrusted users
+
+4. **Buffer Security:**
+   - VLA usage may cause stack overflow
+   - No bounds checking on very large matrices
+
+### Password Recovery
+
+- **Recovery Code:** Enter `101` at the login prompt
+- **Security Question:** "What is the name of author?"
+- **Correct Answers:** `anant rajput` or `ANANT RAJPUT` (case-insensitive)
+- **Failed Recovery:** One attempt only, followed by immediate "FORCE EVICTION"
+
+### Security Best Practices
+
+If using in any production or shared environment:
+
+1. **Change Default Password Immediately**
+   ```
+   Default: 12345 → Change via System Settings (8 → 6)
+   ```
+
+2. **Secure the Password File**
+   ```bash
+   chmod 600 password.txt  # Unix/Linux
+   ```
+
+3. **Run with Limited Privileges**
+   - Don't run as root/administrator
+   - Use dedicated user account
+
+4. **Monitor for Unusual Behavior**
+   - Check for unexpected file access
+   - Monitor program crashes
 
 ---
 
@@ -666,66 +674,23 @@ ONLY 2x2 MARRIX ARE SUPPORTED
   - Cholesky decomposition
   - SVD (Singular Value Decomposition)
 
-- [ ] **Better Eigenvector Display**
-  - Normalized eigenvectors
-  - Proper formatting
-  - Handle zero eigenvalues correctly
-
 ### Low Priority
 
 - [ ] **File I/O**
   - Import matrices from CSV/text files
   - Export results to files
   - Save calculation history
-  - JSON format support
-
-- [ ] **Batch Processing**
-  - Process multiple matrices
-  - Script mode for automation
-  - Command-line arguments
 
 - [ ] **GUI Version**
   - GTK+ interface for Linux
   - Qt for cross-platform
   - Web-based interface
 
-- [ ] **Advanced Features**
-  - Matrix calculus operations
-  - Symbolic computation support
-  - Step-by-step solution display
-  - Matrix visualization (ASCII art)
-
-### Code Quality Improvements
-
-- [ ] **Refactoring**
-  - Separate functions for each operation
-  - Modular code structure
-  - Header files for organization
-  - Reduce code duplication
-
-- [ ] **Error Handling**
-  - Implement error codes
-  - Consistent error messages
-  - Logging system
-  - Better exception handling
-
-- [ ] **Memory Management**
-  - Move to heap allocation for large matrices
-  - Implement proper cleanup
-  - Memory leak detection
-  - Buffer overflow protection
-
-- [ ] **Testing**
-  - Unit tests for each operation
-  - Integration tests
-  - Edge case coverage
-  - Automated testing framework
-
-- [ ] **Documentation**
-  - Inline code comments
-  - API documentation
-  - Developer guide
-  - Mathematical explanations
+- [ ] **Code Quality**
+  - Refactor into separate functions
+  - Improve error handling
+  - Add comprehensive comments
+  - Unit testing framework
 
 ---
 
@@ -785,12 +750,6 @@ Contributions are welcome! Here's how you can help improve MATOPS:
   - Functions: `snake_case`
   - Constants: `UPPER_CASE`
 - **Comments:** Clear and concise
-  ```c
-  // Calculate determinant using cofactor expansion
-  detA = arr1[0][0] * (arr1[1][1] * arr1[2][2] - arr1[1][2] * arr1[2][1])
-       - arr1[0][1] * (arr1[1][0] * arr1[2][2] - arr1[1][2] * arr1[2][0])
-       + arr1[0][2] * (arr1[1][0] * arr1[2][1] - arr1[1][1] * arr1[2][0]);
-  ```
 
 #### What to Contribute
 
@@ -829,55 +788,15 @@ Before submitting a pull request, ensure:
 - [ ] All operations work correctly
 - [ ] Edge cases handled (zero matrices, singular matrices, etc.)
 - [ ] No memory leaks (test with valgrind if possible)
-  ```bash
-  valgrind --leak-check=full ./matops
-  ```
 - [ ] Error messages are clear
 - [ ] Documentation updated
 - [ ] Code follows style guidelines
-- [ ] Backward compatibility maintained
-
-### Types of Contributions Needed
-
-| Priority | Type | Examples |
-|----------|------|----------|
-| 🔴 High | Bug Fixes | Eigenvector formatting, typos, input validation |
-| 🟡 Medium | Features | New operations, larger matrix support |
-| 🟢 Low | Enhancement | GUI, file I/O, optimization |
-| 🔵 Documentation | Docs | Comments, tutorials, examples |
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/matops.git
-cd matops
-
-# Create development branch
-git checkout -b dev
-
-# Compile with all warnings
-gcc -std=c99 -Wall -Wextra -Wpedantic matops.c -o matops -lm
-
-# Run the program
-./matops
-```
-
-### Code Review Process
-
-1. **Automated Checks:** Basic compilation and style checks
-2. **Manual Review:** Code quality and functionality review
-3. **Testing:** Verification of changes
-4. **Feedback:** Suggestions for improvement
-5. **Approval:** Merge into main branch
 
 ---
 
 ## 📄 License
 
 This project is licensed under the **MIT License**.
-
-### MIT License
 
 ```
 MIT License
@@ -928,10 +847,10 @@ SOFTWARE.
 
 ### Get in Touch
 
-- **GitHub Issues:** [Report bugs or request features](https://github.com/yourusername/matops/issues)
-- **Pull Requests:** [Contribute code](https://github.com/yourusername/matops/pulls)
-- **Email:** your.email@example.com
-- **LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- **GitHub Issues:** Report bugs or request features
+- **Pull Requests:** Contribute code
+- **Version:** 4.2.1
+- **Last Updated:** December 27, 2025
 
 ### Support
 
@@ -952,93 +871,20 @@ If you find this project helpful:
 - **C Programming:** Inspired by the simplicity and power of C language
 - **Learning Resource:** Designed as both a tool and a learning reference
 
-### Special Thanks To:
-- Students who provided feedback and feature requests
-- Contributors who helped improve the code
-- The open-source community for inspiration
-- Mathematics educators for validation of algorithms
-
 ---
 
 ## 📊 Project Statistics
 
 | Metric | Value |
 |--------|-------|
-| **Current Version** | 4.0.0 |
+| **Current Version** | 4.2.1 |
 | **Development Status** | Active |
-| **Last Updated** | December 25, 2025 |
-| **Lines of Code** | ~700 |
+| **Last Updated** | December 27, 2025 |
+| **Lines of Code** | ~750 |
 | **Language** | C (C99 standard) |
 | **License** | MIT |
 | **Stability** | Stable (Production Ready) |
 | **Platforms** | Linux/Unix (Windows compatible with modifications) |
-
-### Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| **4.0.0** | Dec 25, 2025 | Current stable release - Enhanced security features, improved error handling |
-| **3.2.5** | Dec 25, 2025 | Bug fixes and performance improvements |
-| **3.2.4** | Dec 24, 2025 | Minor updates and stability improvements |
-| **2.2.0** | Dec 22, 2025 | Feature additions and code refactoring |
-| Earlier | - | Previous versions (not documented) |
-
----
-
-## 🔐 Security
-
-### Security Considerations
-
-⚠️ **Important Security Notes:**
-
-1. **Password Storage:**
-   - Passwords stored in plain text in `password.txt`
-   - **Not suitable for sensitive environments**
-   - For educational/personal use only
-
-2. **File Permissions:**
-   - `password.txt` created with default permissions
-   - Recommend setting `chmod 600 password.txt` on Unix systems
-
-3. **Input Validation:**
-   - Limited validation of user input
-   - Malicious input may cause crashes
-   - Do not expose to untrusted users
-
-4. **Buffer Security:**
-   - VLA usage may cause stack overflow
-   - No bounds checking on very large matrices
-
-### Security Best Practices
-
-If using in any production or shared environment:
-
-1. **Change Default Password Immediately**
-   ```
-   Default: 12345 → Change via System Settings (8 → 6)
-   ```
-
-2. **Secure the Password File**
-   ```bash
-   chmod 600 password.txt  # Unix/Linux
-   ```
-
-3. **Run with Limited Privileges**
-   - Don't run as root/administrator
-   - Use dedicated user account
-
-4. **Monitor for Unusual Behavior**
-   - Check for unexpected file access
-   - Monitor program crashes
-
-### Reporting Security Issues
-
-If you discover a security vulnerability:
-1. **DO NOT** open a public issue
-2. Email directly to: security@example.com
-3. Include detailed description
-4. Provide steps to reproduce
-5. Allow time for patch before disclosure
 
 ---
 
@@ -1076,3 +922,10 @@ If you discover a security vulnerability:
 
 **Ensure:**
 - Current directory is writable
+- Sufficient disk space available
+
+---
+
+**Made with ❤️ for Linear Algebra Students**
+
+*MATOPS - Making Matrix Operations Simple and Accessible*
