@@ -5,8 +5,8 @@
 int main()
 {   
     char forgot;
-    int password;
-    int user_input_password = 0;
+    char password[50];
+    char user_input_password[50];
     int sys_choice = 0;
     int try = 0;
     int flag = 0;
@@ -14,12 +14,12 @@ int main()
     FILE *fp;
     fp = fopen("password.txt", "r");
 
-    if (fp == NULL || fscanf(fp, "%d", &password) != 1)
+    if (fp == NULL || fscanf(fp, "%s", password) != 1)
     {
-        password = 12345;  
+        char password[50] = "12345";  
 
         fp = fopen("password.txt", "w");
-        fprintf(fp, "%d", password);
+        fprintf(fp, "%s", password);
         fclose(fp);
     }
     else
@@ -34,8 +34,8 @@ int main()
             printf("\t\t\t\t\t\tWELCOME TO MATOPS\n");
             printf("\t\t\t\t\t\t------------------\n");
             printf("ENTER PASSWORD TO LOG IN (enter 101 for forgot password): ");
-            scanf("%d", &user_input_password);
-            if (user_input_password == 101)
+            scanf("%s", user_input_password);
+            if (strcmp(user_input_password, "101") == 0)
             {
                 printf("What is the name of author: ");
                 char author[50];
@@ -43,7 +43,7 @@ int main()
                 if ((strcmp(author, "anant rajput") == 0 )|| (strcmp(author, "ANANT RAJPUT") == 0))
                 {
                     printf("\t\t\t\t\t------------------------========\n");
-                    printf("\t\t\t\t\tThe Current Password is : %d\n", password);
+                    printf("\t\t\t\t\tThe Current Password is : %s\n", password);
                     printf("\t\t\t\t\t------------------------========\n");
                     continue;
                 }
@@ -60,7 +60,7 @@ int main()
             flag_for_pass_change = 0;
         }
 
-        if (password == user_input_password)
+        if (strcmp(password, user_input_password) == 0)
         {
             try = 0;
             printf("------------------\n");
@@ -252,84 +252,84 @@ int main()
                     }          
                 }
                 else if (r1 == 2)
-            {   printf("ENTER ELEMENTS OF MATRIX A:\n");
-                for (int i = 0; i < r1; i++)
+                {   printf("ENTER ELEMENTS OF MATRIX A:\n");
+                    for (int i = 0; i < r1; i++)
+                    {
+                        for (int j = 0; j < c1; j++)
+                        {
+                            scanf("%f", &arr1[i][j]);
+                        }
+                    }
+                    detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
+                    if (detA == 0)
+                    {
+                        printf("----------------------\n");
+                        printf("INVERSE DOES NOT EXIST\n");
+                        printf("-----------------------\n");
+                    }
+                    else if (detA != 0)
+                    {
+                        inv[0][0] = arr1[1][1]/detA;
+                        inv[0][1] = -arr1[0][1]/detA;
+                        inv[1][0] = -arr1[1][0]/detA;
+                        inv[1][1] = arr1[0][0]/detA;
+                        printf("---------------------------\n");
+                        printf("INVERSE OF MATRIX A IS : \n");
+                        for (int i = 0; i < r1; i++)
+                        {
+                            for (int j = 0; j < c1; j++)
+                            {
+                                printf("%.2f\t", inv[i][j]);
+                            }
+                            printf("\n");
+                        }
+                        printf("---------------------------\n");
+                    }
+                }
+                else if (r1 == 3)
                 {
-                    for (int j = 0; j < c1; j++)
+                    printf("ENTER ELEMENTS OF MATRIX A:\n");
+                    for (int i = 0; i < r1; i++)
+                    {
+                        for (int j = 0; j < c1; j++)
                     {
                         scanf("%f", &arr1[i][j]);
                     }
-                }
-                detA = arr1[0][0] * arr1[1][1] - (arr1[0][1] * arr1[1][0]);
-                if (detA == 0)
-                {
-                    printf("----------------------\n");
-                    printf("INVERSE DOES NOT EXIST\n");
-                    printf("-----------------------\n");
-                }
-                else if (detA != 0)
-                {
-                    inv[0][0] = arr1[1][1]/detA;
-                    inv[0][1] = -arr1[0][1]/detA;
-                    inv[1][0] = -arr1[1][0]/detA;
-                    inv[1][1] = arr1[0][0]/detA;
-                    printf("---------------------------\n");
-                    printf("INVERSE OF MATRIX A IS : \n");
-                    for (int i = 0; i < r1; i++)
+                    }
+                    detA = arr1[0][0]*(arr1[1][1]*arr1[2][2] - arr1[1][2]*arr1[2][1])
+                       - arr1[0][1]*(arr1[1][0]*arr1[2][2] - arr1[1][2]*arr1[2][0])
+                       + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
+                    if (detA == 0)
                     {
+                        printf("-----------------------\n");
+                        printf("INVERSE DOES NOT EXIST\n");
+                        printf("-----------------------\n");
+                    }
+                    else if (detA != 0)
+                    {
+                        inv[0][0]=(arr1[1][1]*arr1[2][2]-arr1[1][2]*arr1[2][1])/detA;
+                        inv[0][1]=-(arr1[0][1]*arr1[2][2]-arr1[0][2]*arr1[2][1])/detA;
+                        inv[0][2]=(arr1[0][1]*arr1[1][2]-arr1[0][2]*arr1[1][1])/detA;
+
+                        inv[1][0]=-(arr1[1][0]*arr1[2][2]-arr1[1][2]*arr1[2][0])/detA;
+                        inv[1][1]=(arr1[0][0]*arr1[2][2]-arr1[0][2]*arr1[2][0])/detA;
+                        inv[1][2]=-(arr1[0][0]*arr1[1][2]-arr1[0][2]*arr1[1][0])/detA;
+
+                        inv[2][0]=(arr1[1][0]*arr1[2][1]-arr1[1][1]*arr1[2][0])/detA;
+                        inv[2][1]=-(arr1[0][0]*arr1[2][1]-arr1[0][1]*arr1[2][0])/detA;
+                        inv[2][2]=(arr1[0][0]*arr1[1][1]-arr1[0][1]*arr1[1][0])/detA;
+                        printf("---------------------------\n");
+                        for (int i = 0; i < r1; i++)
+                        {
                         for (int j = 0; j < c1; j++)
                         {
                             printf("%.2f\t", inv[i][j]);
                         }
                         printf("\n");
-                    }
-                    printf("---------------------------\n");
-                }
-            }
-                else if (r1 == 3)
-            {
-                printf("ENTER ELEMENTS OF MATRIX A:\n");
-                for (int i = 0; i < r1; i++)
-                {
-                    for (int j = 0; j < c1; j++)
-                    {
-                        scanf("%f", &arr1[i][j]);
+                        }
+                        printf("---------------------------\n");
                     }
                 }
-                detA = arr1[0][0]*(arr1[1][1]*arr1[2][2] - arr1[1][2]*arr1[2][1])
-                       - arr1[0][1]*(arr1[1][0]*arr1[2][2] - arr1[1][2]*arr1[2][0])
-                       + arr1[0][2]*(arr1[1][0]*arr1[2][1] - arr1[1][1]*arr1[2][0]);
-                if (detA == 0)
-                {
-                    printf("-----------------------\n");
-                    printf("INVERSE DOES NOT EXIST\n");
-                    printf("-----------------------\n");
-                }
-                else if (detA != 0)
-                {
-                    inv[0][0]=(arr1[1][1]*arr1[2][2]-arr1[1][2]*arr1[2][1])/detA;
-                    inv[0][1]=-(arr1[0][1]*arr1[2][2]-arr1[0][2]*arr1[2][1])/detA;
-                    inv[0][2]=(arr1[0][1]*arr1[1][2]-arr1[0][2]*arr1[1][1])/detA;
-
-                    inv[1][0]=-(arr1[1][0]*arr1[2][2]-arr1[1][2]*arr1[2][0])/detA;
-                    inv[1][1]=(arr1[0][0]*arr1[2][2]-arr1[0][2]*arr1[2][0])/detA;
-                    inv[1][2]=-(arr1[0][0]*arr1[1][2]-arr1[0][2]*arr1[1][0])/detA;
-
-                    inv[2][0]=(arr1[1][0]*arr1[2][1]-arr1[1][1]*arr1[2][0])/detA;
-                    inv[2][1]=-(arr1[0][0]*arr1[2][1]-arr1[0][1]*arr1[2][0])/detA;
-                    inv[2][2]=(arr1[0][0]*arr1[1][1]-arr1[0][1]*arr1[1][0])/detA;
-                    printf("---------------------------\n");
-                    for (int i = 0; i < r1; i++)
-                    {
-                    for (int j = 0; j < c1; j++)
-                    {
-                        printf("%.2f\t", inv[i][j]);
-                    }
-                    printf("\n");
-                    }
-                    printf("---------------------------\n");
-                }
-            }
                 flag = 1;
             }
             else if (choice == 4)
@@ -533,7 +533,7 @@ int main()
                     if (sys_choice == 1)
                     {
                         printf("\t\t\t\t\t\t---------------------\n");
-                        printf("\t\t\t\t\t\tVersion Number: 4.1.1\n");
+                        printf("\t\t\t\t\t\tVersion Number: 4.2.1\n");
                         printf("\t\t\t\t\t\t---------------------\n");
                     }
                     else if (sys_choice == 2)
@@ -551,7 +551,7 @@ int main()
                         else if (sys_choice == 4)
                         {
                             printf("\t\t\t\t\t\t----------------------------------------\n");
-                            printf("\t\t\t\t\t\tRecent Update Date: 26 . DECEMBER . 2025\n");
+                            printf("\t\t\t\t\t\tRecent Update Date: 27 . DECEMBER . 2025\n");
                             printf("\t\t\t\t\t\t----------------------------------------\n");
                         }
                     else if (sys_choice == 5)
@@ -569,24 +569,24 @@ int main()
                     }
                     else if (sys_choice == 6)
                     {
-                        int user_change_current_pass_inp;
-                        int pass1, pass2;
+                        char user_change_current_pass_inp[50];
+                        char pass1[50], pass2[50];
                         int pass_change_check_try = 0;
                         while(pass_change_check_try != 3)
                         {
                             printf("\t\t\t\t\t\t\t---------------------------------\n");
                             printf("\t\t\t\t\t\t\tEnter the Current Password: ");
-                            scanf("%d", &user_change_current_pass_inp);
+                            scanf("%s", user_change_current_pass_inp);
                             printf("\t\t\t\t\t\t\t---------------------------------\n");
-                            if (password == user_change_current_pass_inp)
+                            if (strcmp(password, user_change_current_pass_inp) == 0)
                             {
                                 int pass_change_try = 0;
                                 while (pass_change_try != 3)
                                 {
                                     printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
                                     printf("\t\t\t\t\t\t\tEnter New Password: ");
-                                    scanf("%d", &pass1);
-                                    if (pass1 == 101)
+                                    scanf("%s", pass1);
+                                    if (strcmp(pass1, "101") == 0)
                                     {
                                         printf("\t\t\t\t\t-------------------------------------------------------------------\n");
                                         printf("\t\t\t\t\t[101] can't be used as PASSWORD as it is alloted to SYSTEM COMMANDS.\n");
@@ -594,19 +594,19 @@ int main()
                                         continue;
                                     }
                                     printf("\t\t\t\t\t\t\tEnter the Above Password Again:");
-                                    scanf("%d", &pass2);
-                                    if (pass1 == pass2)
+                                    scanf("%s", pass2);
+                                    if (strcmp(pass1, pass2) == 0)
                                     {
-                                        password = pass1;
+                                        strcpy(password, pass1);
                                         printf("\t\t\t\t\t\t\tPASSWORD HAS BEEN CHANGED SUCCESSFULLY.\n");
                                         printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
                                         pass_change_check_try = 3;
                                         fp = fopen("password.txt", "w");
-                                        fprintf(fp, "%d", password);
+                                        fprintf(fp, "%s", password);
                                         fclose(fp);
                                         break;
                                     }
-                                    else if (pass1 != pass2)
+                                    else if (strcmp(pass1, pass2) != 0)
                                     {
                                         printf("\t\t\t\t\t\t\tBoth input password are different. TRY AGAIN\n");
                                         printf("\t\t\t\t\t\t\t-----------------------------------------------\n");
@@ -615,7 +615,7 @@ int main()
 
                                 }
                             }
-                            else if (password != user_change_current_pass_inp)
+                            else if (strcmp(password, user_change_current_pass_inp) != 0)
                             {
                                 if (pass_change_check_try < 2)
                                 {
@@ -648,7 +648,7 @@ int main()
                         printf("\t\t\t\t\t\tReturned To Previous Menu.\n");
                         printf("\t\t\t\t\t\t--------------------------\n");
                         sys_choice = 0;
-                        user_input_password = password;
+                        strcpy(user_input_password, password);
                         flag = 1;
                         break;
                     }
