@@ -16,7 +16,7 @@ int main()
 
     if (fp == NULL || fscanf(fp, "%s", password) != 1)
     {
-        char password[50] = "12345";  
+        strcpy(password, "12345");;  
 
         fp = fopen("password.txt", "w");
         fprintf(fp, "%s", password);
