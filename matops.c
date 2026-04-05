@@ -533,7 +533,7 @@ int main()
                     if (sys_choice == 1)
                     {
                         printf("\t\t\t\t\t\t---------------------\n");
-                        printf("\t\t\t\t\t\tVersion Number: 4.2.1\n");
+                        printf("\t\t\t\t\t\tVersion Number: 4.3.0\n");
                         printf("\t\t\t\t\t\t---------------------\n");
                     }
                     else if (sys_choice == 2)
@@ -551,7 +551,7 @@ int main()
                         else if (sys_choice == 4)
                         {
                             printf("\t\t\t\t\t\t----------------------------------------\n");
-                            printf("\t\t\t\t\t\tRecent Update Date: 27 . DECEMBER . 2025\n");
+                            printf("\t\t\t\t\t\tRecent Update Date: 04 . JULY . 2026\n");
                             printf("\t\t\t\t\t\t----------------------------------------\n");
                         }
                     else if (sys_choice == 5)
