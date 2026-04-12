@@ -8,7 +8,7 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Features](#-features)
 - [Operations Supported](#-operations-supported)
@@ -27,23 +27,23 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 ---
 
-## ✨ Features
+##  Features
 
-- **🔐 Password Protected:** Secure login system with 5-attempt limit and persistent password storage
-- **💾 Password Persistence:** Password saved to `password.txt` file (default: `12345`)
-- **🔒 Password Recovery:** Security question-based password recovery system
-- **📊 Seven Matrix Operations:** Complete suite of linear algebra operations
-- **✅ Input Validation:** Comprehensive dimension and compatibility checks
-- **🎯 User-Friendly Interface:** Clear, menu-driven navigation
-- **⚙️ System Settings:** Password management and program information
-- **🧹 Screen Management:** Clear screen functionality for better organization
-- **💾 Memory Efficient:** Dynamic memory allocation using VLAs
-- **🔄 Session Persistence:** Continue operations without restarting
-- **🔒 Security Features:** Forceful eviction after failed authentication attempts
+- ** Password Protected:** Secure login system with 5-attempt limit and persistent password storage
+- ** Password Persistence:** Password saved to `password.txt` file (default: `12345`)
+- ** Password Recovery:** Security question-based password recovery system
+- ** Seven Matrix Operations:** Complete suite of linear algebra operations
+- ** Input Validation:** Comprehensive dimension and compatibility checks
+- ** User-Friendly Interface:** Clear, menu-driven navigation
+- ** System Settings:** Password management and program information
+- ** Screen Management:** Clear screen functionality for better organization
+- ** Memory Efficient:** Dynamic memory allocation using VLAs
+- ** Session Persistence:** Continue operations without restarting
+- ** Security Features:** Forceful eviction after failed authentication attempts
 
 ---
 
-## 🔢 Operations Supported
+##  Operations Supported
 
 ### 1. Matrix Multiplication
 - Multiplies two matrices A[r₁×c₁] and B[r₂×c₂]
@@ -96,7 +96,7 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 ---
 
-## 🛠️ Prerequisites
+##  Prerequisites
 
 - **C Compiler:** GCC 4.8+ or any C99-compatible compiler
 - **Operating System:** Linux/Unix (uses `system("clear")`)
@@ -106,7 +106,7 @@ A comprehensive command-line matrix operations calculator written in C, featurin
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### Clone or Download
 ```bash
@@ -142,7 +142,7 @@ Replace `system("clear")` with `system("cls")` in the source code before compili
 
 ---
 
-## 🚀 Usage
+##  Usage
 
 ### Running the Program
 ```bash
@@ -183,7 +183,7 @@ CHOOSE OPERATIONS:
 
 ---
 
-## 📚 Examples
+##  Examples
 
 ### Example 1: Matrix Multiplication (2×3 × 3×2)
 
@@ -369,7 +369,7 @@ THE TRANSPOSE OF THE MATRIX A IS:
 
 ---
 
-## ⚙️ System Settings
+## System Settings
 
 Access via main menu option 8:
 
@@ -465,7 +465,7 @@ Exits to login screen while keeping program running
 
 ---
 
-## 🛡️ Error Handling
+##  Error Handling
 
 The program validates and handles various error conditions:
 
@@ -498,7 +498,7 @@ The program validates and handles various error conditions:
 
 ---
 
-## ⚠️ Limitations
+##  Limitations
 
 ### Matrix Size Constraints
 
@@ -567,11 +567,11 @@ The program validates and handles various error conditions:
 
 ---
 
-## 🔐 Security
+##  Security
 
 ### Security Considerations
 
-⚠️ **Important Security Notes:**
+ **Important Security Notes:**
 
 1. **Password Storage:**
    - Passwords stored in plain text in `password.txt`
@@ -622,7 +622,7 @@ If using in any production or shared environment:
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 ### High Priority
 
@@ -694,7 +694,7 @@ If using in any production or shared environment:
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Here's how you can help improve MATOPS:
 
@@ -794,7 +794,7 @@ Before submitting a pull request, ensure:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License**.
 
@@ -824,24 +824,24 @@ SOFTWARE.
 
 ### What This Means
 
-✅ **You CAN:**
+ **You CAN:**
 - Use the software for commercial purposes
 - Modify the software
 - Distribute the software
 - Use the software privately
 - Sublicense the software
 
-❌ **You CANNOT:**
+ **You CANNOT:**
 - Hold the author liable
 - Expect warranty or guarantee
 
-📋 **You MUST:**
+ **You MUST:**
 - Include the license and copyright notice
 - State changes made to the code
 
 ---
 
-## 📞 Contact
+##  Contact
 
 **Author & Maintainer:** Anant Rajput
 
@@ -855,15 +855,15 @@ SOFTWARE.
 ### Support
 
 If you find this project helpful:
-- ⭐ Star the repository
-- 🐛 Report bugs
-- 💡 Suggest features
-- 🤝 Contribute code
-- 📢 Share with others
+-  Star the repository
+-  Report bugs
+-  Suggest features
+-  Contribute code
+-  Share with others
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Mathematical Foundation:** Standard linear algebra algorithms and formulations
 - **Educational Purpose:** Built to help students understand matrix operations
@@ -873,7 +873,7 @@ If you find this project helpful:
 
 ---
 
-## 📊 Project Statistics
+## Project Statistics
 
 | Metric | Value |
 |--------|-------|
@@ -888,12 +888,12 @@ If you find this project helpful:
 
 ---
 
-## ⚠️ Important Notes
+## Important Notes
 
-### ⚠️ Security Warning
+### Security Warning
 **The default password is `12345`.** For any shared or production environment, change the password immediately via System Settings (Option 8 → 6). The password is stored in plain text in `password.txt` and is not encrypted.
 
-### 💻 Platform Compatibility
+### Platform Compatibility
 **This program uses `system("clear")` which is Unix/Linux specific.** 
 
 **Windows users must:**
@@ -909,7 +909,7 @@ If you find this project helpful:
 #endif
 ```
 
-### 💾 Memory Limitations
+### Memory Limitations
 **Large matrices may cause stack overflow** due to VLA usage. 
 
 **Recommendations:**
@@ -917,7 +917,7 @@ If you find this project helpful:
 - For very large matrices, consider implementing heap allocation
 - Monitor system memory during operations
 
-### 📁 File Requirements
+### File Requirements
 **The program needs write access** to create and modify `password.txt` in the current directory.
 
 **Ensure:**
@@ -926,6 +926,6 @@ If you find this project helpful:
 
 ---
 
-**Made with ❤️ for Linear Algebra Students**
+**Made with Love for Linear Algebra Students**
 
 *MATOPS - Making Matrix Operations Simple and Accessible*
